@@ -9,9 +9,10 @@ const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
 const btnRestart = document.querySelector("#restart");
 
-/* Selectores vidas y tiempo */
+/* Selectores vidas y tiempo y nivel */
 const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
+const spanLevel = document.querySelector('#level');
 
 /* Selectores records y tiempo partida total */
 const spanRecord = document.querySelector('#record');
@@ -96,8 +97,8 @@ function startGame() {
     }
     console.log(map.length);
 
-    if (!timeStart) {
-        timeStart = Date.now();
+    if (!timeStart) {/* 
+        timeStart = Date.now(); */
         timeInterval = setInterval(showTime, 100);
         showRecord();
     }
@@ -108,6 +109,7 @@ function startGame() {
     console.log(mapRowCols);
 
     showLives();
+    showLevel();
 
     enemyPositions = [];
     game.clearRect(0, 0, canvasSize, canvasSize);
@@ -259,6 +261,9 @@ function showRecord() {
     spanRecord.innerHTML = localStorage.getItem('record_time');
 }
 
+function showLevel() { //funcion para mostrar el nivel
+    spanLevel.innerHTML = level + 1;
+}
 
 /* funciones de movimiento */
 
@@ -269,6 +274,11 @@ function moveUp() {
         console.log("Out");
     } else {
         playerPosition.y -= elementsSize;
+        if (!timeStart) {
+            timeStart = Date.now();
+            timeInterval = setInterval(showTime, 100);
+            showRecord();
+        }
         startGame();
     }    
 }
@@ -291,6 +301,11 @@ function moveRight() {
         console.log("Out");
     } else {
         playerPosition.x += elementsSize;
+        if (!timeStart) {
+        timeStart = Date.now();
+        timeInterval = setInterval(showTime, 100);
+        showRecord();
+    }
         startGame();
     }
 }
@@ -316,6 +331,7 @@ function restartGame() { // esta funcion se ejecuta cuando el jugador reinicia e
         }
         playerPosition.x = undefined;
         playerPosition.y = undefined;
+        timeStart = undefined;
         startGame();
     }
 }
