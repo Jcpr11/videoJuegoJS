@@ -6,9 +6,9 @@
 const emojis = {
     '-': ' ',
     'O': '🚪',
-    'X': '💣',
-    'I': '🎁',
-    'PLAYER': '💀',
+    'X': '🕸️',
+    'I': '🏆',
+    'PLAYER': '🐧',
     'BOMB_COLLISION': '🔥',
     'GAME_OVER': '👎',
     'WIN': '🏆',
@@ -50,5 +50,17 @@ maps.push(`
     XX-----XXX
     XX-XXXXXXX
     XX-----OXX
+    XXXXXXXXXX
+`);
+maps.push(`
+    O-------IX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
+    XXXXXXXXXX
     XXXXXXXXXX
 `);

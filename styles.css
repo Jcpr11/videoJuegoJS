@@ -59,6 +59,34 @@ p {
 }
 
 @media (max-width: 440px) {
-    button { margin-top: 5px; }
+    button { margin-top: 5px; height: 50px;}
     #up, #down { margin-left: 100%; margin-right: 100%; }
+    #up {
+        position: relative;
+        top: -50px;
+    }
+
+    #left {
+        position: relative;
+        top: -25px;
+    }
+
+    #down {
+        position: relative;
+    }
+
+    #right {
+        position: relative;
+        top: -25px;
+        margin-left: 40px;
+    }
+
+    #restart {
+        position: relative;
+        top: 30px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        padding: 0;
+    }
 }

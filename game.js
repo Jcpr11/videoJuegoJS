@@ -7,6 +7,7 @@ const btnUp = document.querySelector("#up");
 const btnLeft = document.querySelector("#left");
 const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
+const btnRestart = document.querySelector("#restart");
 
 /* Selectores vidas y tiempo */
 const spanLives = document.querySelector('#lives');
@@ -54,6 +55,7 @@ btnUp.addEventListener("click", moveUp);
 btnLeft.addEventListener("click", moveLeft);
 btnRight.addEventListener("click", moveRight);
 btnDown.addEventListener("click", moveDown);
+btnRestart.addEventListener("click", restartGame);
 
 
 /* Funciones inciales size etc */
@@ -92,6 +94,7 @@ function startGame() {
         gameWin();
         return;
     }
+    console.log(map.length);
 
     if (!timeStart) {
         timeStart = Date.now();
@@ -164,8 +167,8 @@ function movePlayer() {
 
     /* Comprobacion si se colisiona con el regalo */
 
-    const giftCollisionX = playerPosition.x.toFixed(2) == giftPosition.x.toFixed(2);
-    const giftCollisionY = playerPosition.y.toFixed(2) == giftPosition.y.toFixed(2);
+    const giftCollisionX = Number(playerPosition.x.toFixed(2)) == Number(giftPosition.x.toFixed(2));
+    const giftCollisionY = Number(playerPosition.y.toFixed(2)) == Number(giftPosition.y.toFixed(2));
     const giftCollision = giftCollisionX && giftCollisionY;
 
     if (giftCollision) {
@@ -175,8 +178,8 @@ function movePlayer() {
     /* comprobacion si se choca con una bomba */
 
     const enemyCollision = enemyPositions.find(enemy => {
-        const enemyCollisionX = enemy.x.toFixed(2) == playerPosition.x.toFixed(2);
-        const enemyCollisionY = enemy.y.toFixed(2) == playerPosition.y.toFixed(2);
+        const enemyCollisionX = Number(enemy.x.toFixed(2)) == Number(playerPosition.x.toFixed(2));
+        const enemyCollisionY = Number(enemy.y.toFixed(2)) == Number(playerPosition.y.toFixed(2));
         return enemyCollisionX && enemyCollisionY;
     });
 
@@ -299,6 +302,20 @@ function moveDown() {
         console.log("Out");
     } else {
         playerPosition.y += elementsSize;
+        startGame();
+    }
+}
+
+function restartGame() { // esta funcion se ejecuta cuando el jugador reinicia el juego
+    if (window.confirm('Estas seguro de que quieres reiniciar?')) {
+        alert('Reiniciaste el juego');
+        if (lives < 3) {
+            level = 0;
+            lives = 3;
+            timeStart = undefined;
+        }
+        playerPosition.x = undefined;
+        playerPosition.y = undefined;
         startGame();
     }
 }
