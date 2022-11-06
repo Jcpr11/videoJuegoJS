@@ -324,14 +324,13 @@ function moveDown() {
 function restartGame() { // esta funcion se ejecuta cuando el jugador reinicia el juego
     if (window.confirm('Estas seguro de que quieres reiniciar?')) {
         alert('Reiniciaste el juego');
-        if (lives < 3) {
+        if (lives <= 3) {
             level = 0;
             lives = 3;
             timeStart = undefined;
         }
         playerPosition.x = undefined;
         playerPosition.y = undefined;
-        timeStart = undefined;
         startGame();
     }
 }
