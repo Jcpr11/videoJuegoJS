@@ -223,9 +223,13 @@ function gameWin() { // ejecuta la finalizacion del juego y pone los records
 }
 
 function levelFail() {
-    console.log('Perdiste una vida');
-
     lives--;
+
+    if (lives == 2) {
+        alert('Oops has perdido una vida, cuidado solo te quedan ' + lives + ' vidas mas');
+    } else if (lives == 1) {
+        alert('Oops has perdido una vida, cuidado solo te queda ' + lives + ' vida mas');
+    }
 
     console.log(lives);
 
@@ -233,6 +237,7 @@ function levelFail() {
         level = 0;
         lives = 3;
         timeStart = undefined;
+        alert('Oops has perdido tu ultima vida, el juego ha terminado, intenta nuevamente');
     }
 
     playerPosition.x = undefined;
